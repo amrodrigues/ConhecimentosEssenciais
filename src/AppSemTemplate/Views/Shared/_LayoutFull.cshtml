@@ -2,24 +2,19 @@
 <html>
 <head>
     <title>@ViewData["Title"] - AppSemTemplate</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
-
     <environment exclude="Development">
         <link rel="stylesheet" href="~/css/site.min.css" />
     </environment>
-
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AppSemTemplate</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Layout Novo</a>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
@@ -27,7 +22,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Teste</a>
                         </li>
                     </ul>
                 </div>
@@ -46,20 +41,15 @@
             <p>Seu site ASP.NET feito do jeito certo!!</p>
         </div>
     </footer>
-
     <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
-        <script src="~/js/site.js"></script>
-        <script src="~/js/cep.js"></script>
+        <link rel="stylesheet" href="~/js/site.js" />
+        <link rel="stylesheet" href="~/js/cep;.js" />
     </environment>
-
     <environment exclude="Development">
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.min.js"></script>
+        <link rel="stylesheet" href="~/js/site.min.js" />
     </environment>
 
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
