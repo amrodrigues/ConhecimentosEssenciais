@@ -1,0 +1,21 @@
+﻿[
+  {
+    "outputFineName": "wwwroot/css/site.mim.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/css/bootstrap.css",
+      "wwwroot/css/site.css"
+    ]
+  },
+  {
+    "outputFineName": "wwwroot/js/site.mim.css",
+    "inputFiles": [
+      "wwwroot/js/site.js",
+      "wwwroot/js/cep.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "souceMap":  false
+  }
+]
