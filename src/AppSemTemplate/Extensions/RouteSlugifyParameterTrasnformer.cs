@@ -1,25 +1,25 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Text.RegularExpressions;
+﻿//using Microsoft.CodeAnalysis.CSharp.Syntax;
+//using System.Text.RegularExpressions;
 
-namespace AppSemTemplate.Extensions
-{
-    public class RouteSlugifyParameterTrasnformer : IOutboundParameterTransformer
-    {
-        public string TransformOutbound(object value)
-        {
-            if (value == null)
-            {
-                return string.Empty;
-            }
+//namespace AppSemTemplate.Extensions
+//{
+//    public class RouteSlugifyParameterTrasnformer : IOutboundParameterTransformer
+//    {
+//        public string TransformOutbound(object value)
+//        {
+//            if (value == null)
+//            {
+//                return string.Empty;
+//            }
 
-            return Regex.Replace(
-                 value.ToString()!,
-                 "([a-z])([A-Z])",
-                 "$1-$2",
-                 RegexOptions.CultureInvariant,
-                 TimeSpan.FromMilliseconds(100))
-                .ToLowerInvariant();
-        }
+//            return Regex.Replace(
+//                 value.ToString()!,
+//                 "([a-z])([A-Z])",
+//                 "$1-$2",
+//                 RegexOptions.CultureInvariant,
+//                 TimeSpan.FromMilliseconds(100))
+//                .ToLowerInvariant();
+//        }
 
-    }
-}
+//    }
+//}
