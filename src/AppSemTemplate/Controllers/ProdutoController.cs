@@ -10,6 +10,7 @@ using AppSemTemplate.Models;
 
 namespace AppSemTemplate.Controllers
 {
+    [Route("meus-produtos")]
     public class ProdutoController : Controller
     {
         private readonly AppDbContext _context;
@@ -26,6 +27,7 @@ namespace AppSemTemplate.Controllers
         }
 
         // GET: Produto/Details/5
+        [Route("detalhes/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,17 +46,18 @@ namespace AppSemTemplate.Controllers
         }
 
         // GET: Produto/Create
-        public IActionResult CriarNovoProduto()
+        [Route("criar-novo")]
+        public IActionResult Create()
         {
-            return View("Create");
+            return View();
         }
 
         // POST: Produto/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("criar-novo")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CriarNovoProduto([Bind("Id,Nome,Imagem,Valor")] Produto produto)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Imagem,Valor")] Produto produto)
         {
             if (ModelState.IsValid)
             {
@@ -62,10 +65,11 @@ namespace AppSemTemplate.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View("Create",produto);
+            return View(produto);
         }
 
         // GET: Produto/Edit/5
+        [Route("editar-produto/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,7 +88,7 @@ namespace AppSemTemplate.Controllers
         // POST: Produto/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("editar-produto/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Imagem,Valor")] Produto produto)
         {
@@ -117,6 +121,7 @@ namespace AppSemTemplate.Controllers
         }
 
         // GET: Produto/Delete/5
+        [Route("excluir/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,7 +140,7 @@ namespace AppSemTemplate.Controllers
         }
 
         // POST: Produto/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("excluir/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
