@@ -44,9 +44,9 @@ namespace AppSemTemplate.Controllers
         }
 
         // GET: Produto/Create
-        public IActionResult Create()
+        public IActionResult CriarNovoProduto()
         {
-            return View();
+            return View("Create");
         }
 
         // POST: Produto/Create
@@ -54,7 +54,7 @@ namespace AppSemTemplate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Imagem,Valor")] Produto produto)
+        public async Task<IActionResult> CriarNovoProduto([Bind("Id,Nome,Imagem,Valor")] Produto produto)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace AppSemTemplate.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(produto);
+            return View("Create",produto);
         }
 
         // GET: Produto/Edit/5
