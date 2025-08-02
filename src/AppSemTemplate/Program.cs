@@ -1,5 +1,6 @@
 using AppSemTemplate.Data;
 using AppSemTemplate.Extensions;
+using AppSemTemplate.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,15 @@ builder.Services.AddControllersWithViews();
 
 //builder.Services.AddRouting(options =>
 //    options.ConstraintMap["slugify"] = typeof(RouteSlugifyParameterTrasnformer));
+
+//builder.Services.AddScoped<IOperacao, Operacao>();
+
+builder.Services.AddScoped<IOperacaoScoped, Operacao>();
+builder.Services.AddTransient<IOperacaoTransient, Operacao>();
+builder.Services.AddSingleton<IOperacaoSingleton, Operacao>();
+builder.Services.AddSingleton<IOpoeracaoSingletonInstance>(new Operacao(Guid.Empty));
+
+builder.Services.AddTransient<OperacaoService>();
 
 builder.Services.Configure<RazorViewEngineOptions>(options =>
 {
