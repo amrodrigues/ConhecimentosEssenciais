@@ -1,12 +1,17 @@
 using AppSemTemplate.Data;
 using AppSemTemplate.Extensions;
 using AppSemTemplate.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+});
 
 //builder.Services.AddRouting(options =>
 //    options.ConstraintMap["slugify"] = typeof(RouteSlugifyParameterTrasnformer));
