@@ -55,6 +55,14 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
+using (var serviceScope = app.Services.CreateScope())
 
+{ 
+    var services = serviceScope.ServiceProvider;
+
+    var serviceProvider = services.GetRequiredService<IOperacaoSingleton>();
+
+    Console.WriteLine("Operacao Singleton: " + serviceProvider.OperacaoId);
+}
 
 app.Run();
