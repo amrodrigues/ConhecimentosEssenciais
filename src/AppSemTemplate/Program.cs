@@ -4,6 +4,7 @@ using AppSemTemplate.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,12 @@ builder.Services.AddHsts(options =>
     options.ExcludedHosts.Add("www.example.com");
 });
 
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+}
+).AddEntityFrameworkStores<AppDbContext>();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 
@@ -52,7 +59,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
+   
 }
 else
 {
@@ -66,6 +73,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthorization();
+
 //app.MapControllerRoute(
 //    name: "default",
 //    pattern: "{controller:slugify=Home}/{action:slugify=Index}/{id?}"
@@ -77,13 +86,17 @@ app.UseRouting();
 //Rotas de areas especializadas
 app.MapAreaControllerRoute("AreaProdutos", "Produtos", "Produtos/{controller=Cadastro}/{action=Index}/{id?}");
 app.MapAreaControllerRoute("AreaVendas", "Vendas", "Vendas/{controller=Gestao}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
+
+app.MapRazorPages();
+
 using (var serviceScope = app.Services.CreateScope())
 
-{ 
+{
     var services = serviceScope.ServiceProvider;
 
     var serviceProvider = services.GetRequiredService<IOperacaoSingleton>();
